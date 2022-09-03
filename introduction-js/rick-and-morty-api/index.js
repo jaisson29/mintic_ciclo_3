@@ -1,6 +1,11 @@
 async function get_characters(url_api) {
+	/* fetch(url_api, {
+      method: 'GET' //'POST', //'PUT', //'DELETE'
+    }) */
 	// Enviar petición Get
-	const resp = await fetch(url_api)
+	const resp = await fetch(url_api, {
+		method: "GET",
+	})
 	// Obtener datos
 	const data = await resp.json()
 	return data.results
@@ -11,17 +16,17 @@ function show_characters(characters) {
 	// Iterar arreglo
 	for (let i = 0; i < characters.length; i++) {
 		cards += `
-    <article class="card">
-        <img src="${characters[i].image}" />
-        <div class="body-card">
-            <h2>${characters[i].name}</h2>
-            <span>Specie: ${characters[i].species}</span>
-            <span>status: ${characters[i].status}</span>
-            <span>Gender: ${characters[i].gender}</span>
-            <span>Origin: ${characters[i].origin.name}</span>
-        </div>
-    </article>
-    `
+        <article class="card">
+                <img src="${characters[i].image}" />
+                <div class="body-card">
+                <h2>${characters[i].name}</h2>
+                <span>Specie: ${characters[i].species}</span>
+                <span>status: ${characters[i].status}</span>
+                <span>Gender: ${characters[i].gender}</span>
+                <span>Origin: ${characters[i].origin.name}</span>
+            </div>
+        </article>
+        `
 	}
 	document.getElementById("section-cards").innerHTML = cards
 }
