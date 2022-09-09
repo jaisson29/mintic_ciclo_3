@@ -2,9 +2,9 @@
 
 ### Dependencies
 
--Mysql
--Hibernate
--JUnit
+- Mysql
+- Hibernate
+- JUnit
 
 ### MAven repositories
 
