@@ -53,14 +53,18 @@ public class App {
 
             /******** UPDATE ********* */
             // Obtener un registro
-            Mascota mascota = session.find(Mascota.class, 3);
+            /* Mascota mascota = session.find(Mascota.class, 3);
             mascota.setRaza("Dalmata");
             mascota.setEdad(8);
             mascota.setObservacion("No tiene vacunas");
             // Guardar cambios
             session.merge(mascota);
+            session.getTransaction().commit(); */
+            
+            /************* DELETE **************** */
+            Mascota mascota = session.find(Mascota.class, 4);
+            session.remove(mascota);
             session.getTransaction().commit();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
