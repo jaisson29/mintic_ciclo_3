@@ -80,6 +80,25 @@ public class MascotaView {
         }
     }
 
+    public void actualizarMascota(){
+        // Solicitar datos
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la mascota"));
+        String nombre =JOptionPane.showInputDialog(null, "Ingrese nombre de la mascota");
+        String apellido = JOptionPane.showInputDialog(null, "Ingrese apellido del propietario");
+        String tipo_mascota = JOptionPane.showInputDialog(null, "Ingrese el tipo de mascota");
+        String raza = JOptionPane.showInputDialog(null, "Raza"); 
+        int edad = Integer.parseInt(JOptionPane.showInputDialog(null, "Edad de la mascota"));
+        String observacion = JOptionPane.showInputDialog(null, "Observacion");
+        try {
+            controlador.update(id, nombre, apellido, tipo_mascota, raza, edad, observacion);
+            mostrarMensaje("Actualizacion exitosa");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarMensaje("Por favor intente mas tarde");
+        }
+    }
+
     public void menu(){
         String info = "1) Registrar mascota\n";
         info += "2) Consultar mascota por id\n";
@@ -103,7 +122,7 @@ public class MascotaView {
                     consultarMascotasXapellido();
                     break;
                 case 4:
-
+                    actualizarMascota();
                     break;
                 case 5:
 
