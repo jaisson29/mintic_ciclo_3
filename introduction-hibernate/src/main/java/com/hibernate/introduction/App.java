@@ -1,12 +1,12 @@
 package com.hibernate.introduction;
 
-import java.util.List;
+/* import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.hibernate.introduction.model.Mascota;
+import com.hibernate.introduction.model.Mascota; */
 import com.hibernate.introduction.view.MascotaView;
 
 /**
@@ -16,7 +16,7 @@ import com.hibernate.introduction.view.MascotaView;
 public class App {
     public static void main(String[] args) {
         MascotaView view = new MascotaView();
-        view.crearMascota();
+        view.consultarMascotaXid();
 
 
 

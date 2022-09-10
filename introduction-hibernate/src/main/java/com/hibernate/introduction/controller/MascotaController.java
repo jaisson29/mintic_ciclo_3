@@ -1,5 +1,8 @@
 package com.hibernate.introduction.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -25,5 +28,29 @@ public class MascotaController {
         session.persist(mascota);
         session.getTransaction().commit();
         session.close();
+    }
+
+    public String readById(int id) throws Exception {
+        Session session = factory.openSession();
+        session.beginTransaction();
+        Mascota mascota = session.find(Mascota.class, id);
+        return mascota.toString();
+    }
+
+    public List<String> getByLastname(String apellido) throws Exception {
+        // List<String> mascotas = new ArrayList<>();
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List<Mascota> objMascotas = session.createQuery("FROM Mascotas WHERE apellido = :ap", Mascota.class).setParameter("ap", apellido).list();
+        return objToString(objMascotas);
+        // return mascotas;
+    }
+
+    public List<String> objToString(List<Mascota> objMascotas){
+        List<String> mascotas = new ArrayList<>();
+        for (int i = 0; i< objMascotas.size(); i++) {
+            mascotas.add(objMascotas.get(i).toString());
+        }
+        return mascotas;
     }
 }

@@ -1,5 +1,7 @@
 package com.hibernate.introduction.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.hibernate.introduction.controller.MascotaController;
@@ -10,6 +12,10 @@ public class MascotaView {
 
     public MascotaView(){
         controlador = new MascotaController();
+    }
+
+    public void mostrarMensaje(String mensaje){
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 
     public void crearMascota(){
@@ -24,10 +30,26 @@ public class MascotaView {
         // Enviar datos al controlador
         try {
             controlador.create(nombre, apellido, tipo_mascota, raza, edad, observacion);
-            JOptionPane.showMessageDialog(null, "Mascota registrada con exito");
+            mostrarMensaje("Mascota registrada con exito");
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Por favor intente mas tarde");
+            e.printStackTrace();
+            mostrarMensaje("Por favor intete mas tarde");
         }
+    }
+
+    public void consultarMascotaXid() {
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la mascota"));
+        try {
+            String info = controlador.readById(id);
+            mostrarMensaje(info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarMensaje("Por favor intete mas tarde");
+        }
+    }
+
+    public void consultarMascotaXnombre(){
+
     }
 }
