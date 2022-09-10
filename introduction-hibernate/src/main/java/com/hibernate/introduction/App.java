@@ -6,7 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.hibernate.introduction.modelo.Mascota;
+import com.hibernate.introduction.model.Mascota;
+import com.hibernate.introduction.view.MascotaView;
 
 /**
  * Hello world!
@@ -14,7 +15,14 @@ import com.hibernate.introduction.modelo.Mascota;
  */
 public class App {
     public static void main(String[] args) {
-        // Crear objeto fabricante de sesiones
+        MascotaView view = new MascotaView();
+        view.crearMascota();
+
+
+
+
+
+        /* // Crear objeto fabricante de sesiones
         SessionFactory factory = new Configuration()
                 .configure("cfg.xml")
                 .addAnnotatedClass(Mascota.class)
@@ -34,7 +42,7 @@ public class App {
 
             Mascota mascota = new Mascota("Dulce", "Quintero", "Perro", "Chandinez", 2, "Agresiva");
             session.persist(mascota);
-            session.getTransaction().commit(); */
+            session.getTransaction().commit(); 
 
             /********* READ  **************** */
             //Mostrar una sola mascota con el "find"
@@ -49,9 +57,9 @@ public class App {
             for(int i = 0;i < mascotas.size();i++) {
                 System.out.println(mascotas.get(i));
             }
-            */
+            
 
-            /******** UPDATE ********* */
+            /******** UPDATE ********* 
             // Obtener un registro
             /* Mascota mascota = session.find(Mascota.class, 3);
             mascota.setRaza("Dalmata");
@@ -59,9 +67,9 @@ public class App {
             mascota.setObservacion("No tiene vacunas");
             // Guardar cambios
             session.merge(mascota);
-            session.getTransaction().commit(); */
+            session.getTransaction().commit(); 
             
-            /************* DELETE **************** */
+            /************* DELETE **************** 
             Mascota mascota = session.find(Mascota.class, 4);
             session.remove(mascota);
             session.getTransaction().commit();
@@ -70,6 +78,6 @@ public class App {
         }
 
         // Cerrar sesión
-        session.close();
+        session.close(); */
     }
 }

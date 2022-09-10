@@ -1,4 +1,4 @@
-package com.hibernate.introduction.modelo;
+package com.hibernate.introduction.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
