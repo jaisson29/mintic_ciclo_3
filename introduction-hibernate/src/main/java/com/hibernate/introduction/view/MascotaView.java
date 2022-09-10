@@ -53,14 +53,73 @@ public class MascotaView {
         String apellido = JOptionPane.showInputDialog(null, "Por favor ingrese el apellido");
         try {
             List<String> mascotas = controlador.getByLastname(apellido);
-            String info = "--------------MASCOTAS--------------\n";
-            for(int i = 0; i < mascotas.size(); i++){
-                info += mascotas.get(i);
-            }
+            String info = listToString(mascotas);
             mostrarMensaje(info);
         } catch (Exception e) {
             e.printStackTrace();
             mostrarMensaje("Por favor intente mas tarde");
         }
+    }
+
+    public String listToString(List<String> list){
+        String info = "--------------MASCOTAS--------------\n";
+        for(int i = 0; i < list.size(); i++){
+            info += list.get(i);
+        }
+        return info;
+    }
+
+    public void listarMascotas(){
+        try {
+            List<String> mascotas = controlador.getList();
+            String info = listToString(mascotas);
+            mostrarMensaje(info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarMensaje("Por favor intente mas tarde");
+        }
+    }
+
+    public void menu(){
+        String info = "1) Registrar mascota\n";
+        info += "2) Consultar mascota por id\n";
+        info += "3) Consultar mascotas por apellido\n";
+        info += "4) Actualizar info mascota\n";
+        info += "5) Eliminar mascota\n";
+        info += "6)Listar mascotas\n";
+        info += "-1) salir\n";
+
+        int opcion = 0;
+        while(opcion != -1){
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, info));
+            switch(opcion){
+                case 1:
+                    crearMascota();
+                    break;
+                case 2:
+                    consultarMascotaXid();
+                    break;
+                case 3:
+                    consultarMascotasXapellido();
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+                    listarMascotas();
+                    break;
+                case -1:
+
+                    break;
+                default:
+                    mostrarMensaje("Por favor ingrese una opcion valida");
+                    break;
+            }
+
+        }
+
     }
 }

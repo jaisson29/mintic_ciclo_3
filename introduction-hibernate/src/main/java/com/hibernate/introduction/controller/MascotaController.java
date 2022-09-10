@@ -54,4 +54,13 @@ public class MascotaController {
         }
         return mascotas;
     }
+
+    public List<String> getList() throws Exception{
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List<Mascota> mascotas = session.createQuery("FROM Mascota", Mascota.class).list();
+        session.close();
+        return objToString(mascotas);
+    }
+
 }

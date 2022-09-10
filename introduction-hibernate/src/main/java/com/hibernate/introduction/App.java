@@ -16,7 +16,7 @@ import com.hibernate.introduction.view.MascotaView;
 public class App {
     public static void main(String[] args) {
         MascotaView view = new MascotaView();
-        view.consultarMascotasXapellido();
+        view.menu();
 
 
 
