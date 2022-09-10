@@ -6,7 +6,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import com.hibernate.introduction.model.Mascota;
 
 public class MascotaController {
@@ -19,6 +18,12 @@ public class MascotaController {
         .configure("cfg.xml")
         .addAnnotatedClass(Mascota.class)
         .buildSessionFactory();
+    }
+
+    public Session createSession(){
+        Session session = factory.openSession();
+        session.beginTransaction();
+        return session;
     }
 
     public void create(String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion) throws Exception {
@@ -79,6 +84,19 @@ public class MascotaController {
         session.getTransaction().commit();
         session.close();
 
+    }
+
+    public void deleteService(Mascota mascota){
+        Session session = createSession();
+        // Eliminar
+        session.remove(mascota);
+        session.getTransaction().commit();
+    }
+
+    public void delete(int id) throws Exception{
+        Session session = createSession();
+        Mascota mascota = session.find(Mascota.class, id);
+        deleteService(mascota);
     }
 
 }

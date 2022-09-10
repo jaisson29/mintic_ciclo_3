@@ -83,19 +83,30 @@ public class MascotaView {
     public void actualizarMascota(){
         // Solicitar datos
         int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la mascota"));
-        String nombre =JOptionPane.showInputDialog(null, "Ingrese nombre de la mascota");
-        String apellido = JOptionPane.showInputDialog(null, "Ingrese apellido del propietario");
-        String tipo_mascota = JOptionPane.showInputDialog(null, "Ingrese el tipo de mascota");
-        String raza = JOptionPane.showInputDialog(null, "Raza"); 
-        int edad = Integer.parseInt(JOptionPane.showInputDialog(null, "Edad de la mascota"));
-        String observacion = JOptionPane.showInputDialog(null, "Observacion");
+        String nombre =JOptionPane.showInputDialog(null, "Ingrese el nuevo nombre de la mascota");
+        String apellido = JOptionPane.showInputDialog(null, "Ingrese el nuevo apellido del propietario");
+        String tipo_mascota = JOptionPane.showInputDialog(null, "Ingrese el nuevo tipo de mascota");
+        String raza = JOptionPane.showInputDialog(null, "La nueva raza"); 
+        int edad = Integer.parseInt(JOptionPane.showInputDialog(null, "Nueva edad de la mascota"));
+        String observacion = JOptionPane.showInputDialog(null, "Nueva observacion");
         try {
             controlador.update(id, nombre, apellido, tipo_mascota, raza, edad, observacion);
-            mostrarMensaje("Actualizacion exitosa");
+            mostrarMensaje("Mascota actualizada con exito");
 
         } catch (Exception e) {
             e.printStackTrace();
             mostrarMensaje("Por favor intente mas tarde");
+        }
+    }
+
+    public void eliminarMascota(){
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "ELIMINAR MASCOTA\nPor favor ingrese el identificador de la mascota"));
+        try {
+            controlador.delete(id);
+            mostrarMensaje("Mascota eliminada con exito");
+        } catch (Exception e) {
+            e.getStackTrace();
+            mostrarMensaje("Por favor intete mas tarde");
         }
     }
 
@@ -125,7 +136,7 @@ public class MascotaView {
                     actualizarMascota();
                     break;
                 case 5:
-
+                    eliminarMascota();
                     break;
                 case 6:
                     listarMascotas();
