@@ -41,7 +41,8 @@ public class MascotaController {
         // List<String> mascotas = new ArrayList<>();
         Session session = factory.openSession();
         session.beginTransaction();
-        List<Mascota> objMascotas = session.createQuery("FROM Mascotas WHERE apellido = :ap", Mascota.class).setParameter("ap", apellido).list();
+        List<Mascota> objMascotas = session.createQuery("FROM Mascota WHERE apellido = :ap", Mascota.class).setParameter("ap", apellido).list();
+        session.close();
         return objToString(objMascotas);
         // return mascotas;
     }
