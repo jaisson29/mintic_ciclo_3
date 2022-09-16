@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,14 +74,21 @@ public class MascotaController {
     }
 
 
-
-    public void create(String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion) throws Exception {
+    @PostMapping
+    public String create(@RequestBody Mascota mascota) {
+        String message = "";
         Session session = factory.openSession();
         session.beginTransaction();
-        Mascota mascota = new Mascota(nombre, apellido, tipo_mascota, raza, edad, observacion);
-        session.persist(mascota);
-        session.getTransaction().commit();
-        session.close();
+        try {
+            session.persist(mascota);
+            session.getTransaction().commit();
+            message = "Mascota creada con exito";
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+    session.close();
+    return message;
+    
     }
 
 
