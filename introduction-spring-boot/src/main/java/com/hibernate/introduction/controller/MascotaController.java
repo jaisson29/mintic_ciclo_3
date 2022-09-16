@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,8 +102,15 @@ public class MascotaController {
         session.getTransaction().commit();
         session.close();
     }
-
-
+    
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable(name = "id") int id){
+        Session session = createSession();
+        Mascota mascota = session.find(Mascota.class, id);
+        deleteService(mascota);
+        return "Mascota eliminada con exito";
+    }
+    
     public List<String> objToString(List<Mascota> objMascotas){
         List<String> mascotas = new ArrayList<>();
         for (int i = 0; i< objMascotas.size(); i++) {
@@ -120,10 +128,5 @@ public class MascotaController {
         session.getTransaction().commit();
     }
 
-    public void delete(int id) throws Exception{
-        Session session = createSession();
-        Mascota mascota = session.find(Mascota.class, id);
-        deleteService(mascota);
-    }
 
 }
